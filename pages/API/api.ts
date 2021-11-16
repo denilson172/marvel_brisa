@@ -9,11 +9,11 @@ const hash = md5(time+privateKey+publicKey); //criando hash para requisição
 
 //criando link para  arequisição    
 const api = axios.create({
-    baseURL: 'http://gateway.marvel.com/v1/public/?',
+    baseURL: 'http://gateway.marvel.com/v1/public/',
     params: {
         ts: time,
         apikey: publicKey,
-        hash,
+        hash: hash
       },
 });
 

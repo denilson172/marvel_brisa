@@ -1,3 +1,4 @@
+
 .main {
   min-height: 100vh;
   padding: 4rem 0;
@@ -6,6 +7,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-repeat: round;
+  background-color: #740000;
+  list-style-type: none;
+  
 }
 
 .footer {
@@ -21,7 +26,7 @@
 }
 
 .title a {
-  color: #0070f3;
+  color: #eaeaea;
   text-decoration: none;
 }
 
@@ -32,13 +37,21 @@
 }
 
 .title {
+  font-family: Marvel, sans-serif;
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
-  color: #740000;
-  font-family: 'Marvel', sans-serif;
+  color: #eaeaea;
 }
 
+.titleLite {
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.15;
+  font-size: 4rem;
+  font-family: 'Marvel', sans-serif;
+  color: #740000;
+}
 .title,
 .description {
   text-align: center;
@@ -48,6 +61,7 @@
   margin: 4rem 0;
   line-height: 1.5;
   font-size: 1.5rem;
+  list-style-type: none;
 }
 
 .code {
@@ -75,13 +89,16 @@
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
   max-width: 300px;
+  background-color: honeydew;
+  list-style-type: none;
 }
 
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: #740000;
+  border-color: #740000;
+  border: 3px solid;
 }
 
 .card h2 {
@@ -98,6 +115,33 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
+}
+
+img.figure {
+  min-width: 150px;
+  float: center;
+  margin: 0 auto;
+  text-align: center;
+  height: auto; 
+  width: auto; 
+  max-width: 200px; 
+  max-height: 200px;
+  border: thin silver solid;
+  /*margin: 0.5em;
+  padding: 0.5em;*/
+}
+
+.ul {
+  list-style-type: none;
+  list-style: none;
+}
+
+.buttom{
+  
+}
+
+img.scaled {
+  width: 100%;
 }
 
 @media (max-width: 600px) {
