@@ -3,6 +3,9 @@
 import React, { useEffect, useState } from "react";
 import api from "../API/api";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import "bootstrap/dist/css/bootstrap.min.css";
+
 import Head from 'next/head';
 //import Image from 'next/image';
 import styles from '../../styles/Home.module.css';
@@ -41,25 +44,36 @@ return (
       </Head>
 
       <main className={styles.main}>
+        <h5 className={styles.titleWelcome}>Seja bem vindo ao</h5>
         <h1 className={styles.title}>
           MARVEL BRISANET TEST
         </h1>
 
-        <p className={styles.description}>Caixa de busca</p>
+        <form action="">
+        <input className={styles.buttomBuscar} type="button" value="Buscar"/>
+          <input className={styles.BuscaTexto} type="text" placeholder="Pesquisar..."/>
+        </form>
 
         <div className={styles.grid}>
         {comics.map(comics => {
           return(
-              <a href={comics.description} className={styles.card}>
-                <h2 className={styles.titleLite}>{comics.title}</h2>
+              <a href="" className={styles.card}>
+                <h2 className={styles.titleCard}>{comics.title}</h2>
                 <ul className={styles.ul}>
                   <li key={comics.id}>
                       <img className = {styles.figure} src={comics.thumbnail.path+'.jpg'}/>  
-                    <span>{comics.thumbnail.extencion}</span>       
+                    <span>{comics.thumbnail.extencion}</span>
+                         
                   </li>
                 </ul>
-                <button className={styles.buttom} href={comics.description} >Ler mais</button>
-                {/*}<p><h5>{comics.description}</h5></p>{*/}
+                <a href="#abrirModal">Mais Detalhes <FontAwesomeIcon icon={["fas", "save"]} /></a>
+                <div id="abrirModal" className={styles.modal}>
+                  <a href="#fechar" title="Fechar" className={styles.close}>X</a>
+
+                  <h2 className={styles.titleLiteModal}>{comics.title}</h2>
+                  <h2 className={styles.titleLiteModal}>{comics.description}</h2>
+                  
+                </div>               
               </a>
           )})}
           </div>
@@ -68,6 +82,7 @@ return (
       <footer className={styles.footer}>
           Desenvolvido por Denilson Oliveira
       </footer>
+
     </div>
 )
 
