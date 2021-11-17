@@ -2,13 +2,10 @@
 //useState: para salvar requisição em variavel
 import React, { useEffect, useState } from "react";
 import api from "../API/api";
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import "bootstrap/dist/css/bootstrap.min.css";
-
 import Head from 'next/head';
-//import Image from 'next/image';
 import styles from '../../styles/Home.module.css';
+//import { GoogleMap } from "@react-google-maps/api";
+
 
 //indormando ao ts a tipagem dos dados
 interface ResponseData {
@@ -28,57 +25,69 @@ const Comics: React.FC = () => {
      api
      .get('/comics')
      .then(response => {
-       //console.log(response.data.data.results)
-       setComics(response.data.data.results);
-       //console.log('log 2', comics);
+        setComics(response.data.data.results);  //console.log(response.data.data.results)
      })
-     .catch(err => console.log(err));
+     .catch(err => console.log(err)); //log de possiveis erros
 }, []);
 
 return (
+    //inicio da linguagem de marcação junto ao ts
     <div className={styles.container}>
       <Head>
         <title>MARVEL BRISANET</title>
-        <meta name="MARVEL" content="SISTEMA PARA TESTE" />
+        <meta name="MARVEL" content="SINGLE PAGE TEST" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {/*BANNER*/}
       <main className={styles.main}>
+        <img className={styles.logo} src="https://www.brisanet.com.br/imgs/logoMobileWhite.png"/>
         <h5 className={styles.titleWelcome}>Seja bem vindo ao</h5>
-        <h1 className={styles.title}>
-          MARVEL BRISANET TEST
-        </h1>
+        <h1 className={styles.title}>MARVEL BRISANET TEST</h1>
 
-        <form action="">
-        <input className={styles.buttomBuscar} type="button" value="Buscar"/>
-          <input className={styles.BuscaTexto} type="text" placeholder="Pesquisar..."/>
+        {/*SEARCH - NÃO FUNCIONAL*/}
+        <form className={styles.formSearch} action="">
+          <input className={styles.inputSearch} type="text" name="search" placeholder="Pesquisar..."/>
+          <input className={styles.buttomSearch} type="submit" value="Buscar"/>
         </form>
 
+        {/*INIT GRID*/}
         <div className={styles.grid}>
-        {comics.map(comics => {
+        {comics.map(comics => {  {/*mapeando array e coletando dados*/}
           return(
-              <a href="" className={styles.card}>
-                <h2 className={styles.titleCard}>{comics.title}</h2>
+              <div className={styles.card}>
+                <h2 className={styles.titleCard}>{comics.title}</h2> {/*titulo comics*/}
                 <ul className={styles.ul}>
                   <li key={comics.id}>
-                      <img className = {styles.figure} src={comics.thumbnail.path+'.jpg'}/>  
-                    <span>{comics.thumbnail.extencion}</span>
-                         
+                      <img className = {styles.figure} src={comics.thumbnail.path+'.jpg'}/>  {/*imagem comics*/}
+                      {/*{comics.thumbnail.extencion} //a extenção da imagem não está puxando da api*/}
+                      <h2 className={styles.titleLiteModal}>{comics.description}</h2> {/*descrição comics*/}
+
+                      {/*INIT MODAL*/}
+                      <div id="abrirModal" className={styles.modal}>
+                        <h2 className={styles.titleLiteModal}>{comics.id}{comics.title}</h2>
+                        {/* INIT GOOGLE MAPS (não funcional)*/}
+                        {/*}  <GoogleMap
+                            onLoad={map => {
+                              const bounds = new google.maps.LatLngBounds();
+                              map.fitBounds(bounds);
+                            }}
+                            onUnmount={map => {
+                              // do your stuff before map is unmounted
+                            }}
+                          />*/}
+
+                        <a href="#fechar" title="Fechar" className={styles.close}>X</a>
+                      </div>
+                      <a href="#abrirModal" className={styles.buttomPurchase}>R$ | COMPRAR</a> {/*botão de compra*/}
                   </li>
                 </ul>
-                <a href="#abrirModal">Mais Detalhes <FontAwesomeIcon icon={["fas", "save"]} /></a>
-                <div id="abrirModal" className={styles.modal}>
-                  <a href="#fechar" title="Fechar" className={styles.close}>X</a>
-
-                  <h2 className={styles.titleLiteModal}>{comics.title}</h2>
-                  <h2 className={styles.titleLiteModal}>{comics.description}</h2>
-                  
-                </div>               
-              </a>
+              </div>
           )})}
           </div>
       </main>
-
+      
+      {/*INIT FOOTER*/}
       <footer className={styles.footer}>
           Desenvolvido por Denilson Oliveira
       </footer>
