@@ -15,12 +15,12 @@ import ReactDOM from 'react-dom';
 
 
 //maps - NÃO FUNCIONAL
-ReactDOM.render(
+{/*ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
-);
+);*/}
 
 
 //indormando ao tsx a tipagem dos dados
