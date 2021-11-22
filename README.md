@@ -11,4 +11,4 @@ Open [http://localhost:3000](http://localhost:3000)
 O sistema está disponível no GitHub Pages no repositório:
 https://github.com/denilson172
 -----------------------------------------------------
-A Single Page tema  proposta de se comunicar com a API da Marvel Comics, algumas funcionalidades não foram concluidas por falta de tempo.
+A Single Page tem a  proposta de se comunicar com a API da Marvel Comics, algumas funcionalidades não foram concluidas por falta de tempo.
