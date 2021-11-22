@@ -1,5 +1,7 @@
 Olá, para rodar o código deve ter um servidor Node.js instalado na máquina.
 -----------------------------------------------------
+Execute o comando npm update para atualizar os pacotes das libs
+-----------------------------------------------------
 Para iniciar o servidor use o comando
 npm run dev ou yarn dev
 -----------------------------------------------------

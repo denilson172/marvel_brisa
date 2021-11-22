@@ -1,13 +1,29 @@
 //useEffect: para carregar na pagina
 //useState: para salvar requisição em variavel
 import React, { useEffect, useState } from "react";
-import api from "../API/api";
+
+//arquivos
+import api from "../API/APIcomics/apiComics";
 import Head from 'next/head';
 import styles from '../../styles/Home.module.css';
-//import { GoogleMap } from "@react-google-maps/api";
+
+//maps
+import App from '../_app';
+import { GoogleMap } from "@react-google-maps/api";
+import ReactDOM from 'react-dom';
+//import reportWebVitals from '../../reportWebVitals';
 
 
-//indormando ao ts a tipagem dos dados
+//maps - NÃO FUNCIONAL
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+
+//indormando ao tsx a tipagem dos dados
 interface ResponseData {
   id: number;
   title: string;
@@ -21,13 +37,24 @@ interface ResponseData {
 //requisição
 const Comics: React.FC = () => {
   const [comics, setComics] = useState<ResponseData[]>([]);
+  async function loadComics() {
+    try{
+      api
+      let url='/comics';
+      const response = await api.get(url);
+      setComics(response.data.data.results);
+    }catch(error){
+      console.log(comics);
+    }
+  }
+
+  /*async function Search() {
+    var search=document.getElementById("search");
+    (ev) => setComics(ev.target.value);
+  }*/
+  
   useEffect( () => {
-     api
-     .get('/comics')
-     .then(response => {
-        setComics(response.data.data.results);  //console.log(response.data.data.results)
-     })
-     .catch(err => console.log(err)); //log de possiveis erros
+     loadComics();
 }, []);
 
 return (
@@ -46,10 +73,29 @@ return (
         <h1 className={styles.title}>MARVEL BRISANET TEST</h1>
 
         {/*SEARCH - NÃO FUNCIONAL*/}
-        <form className={styles.formSearch} action="">
-          <input className={styles.inputSearch} type="text" name="search" placeholder="Pesquisar..."/>
-          <input className={styles.buttomSearch} type="submit" value="Buscar"/>
-        </form>
+       {/* {comics.map(comics => {
+            return(
+            )
+          })}*/}
+          <form className={styles.formSearch} action="">    
+              
+             <input className={styles.inputSearch}
+             type="text"
+             name="search"
+             placeholder="Pesquisar..."
+             id="search"
+             //value={setComics}
+            //onChange={(ev) => Search()}
+           />
+            <input
+              className={styles.buttomSearch}
+              type="submit"
+              value="Buscar"
+              id="search"
+            />
+          </form>
+          
+        
 
         {/*INIT GRID*/}
         <div className={styles.grid}>
